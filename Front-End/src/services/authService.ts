@@ -1,21 +1,29 @@
 import axios from 'axios';
 
-const API_URL = 'http://192.168.0.36:8081';
+const API_URL = 'http://localhost:8000';
 
+// Função de Login
 export const login = async (email: string, password: string) => {
     try {
-        const response = await axios.get(`${API_URL}/users?email=${email}&password=${password}`);
-        return response.data;
-    } catch (error) {
-        throw new Error('Falha na autenticação. Tente novamente.');
+        const response = await axios.post(`${API_URL}/login`, { email, password });
+        return response.data; // Retorna a resposta do backend
+    } catch (error: any) {
+        throw new Error(error.response?.data?.detail || 'Falha na autenticação. Tente novamente.');
     }
 };
 
-export const register = async (email: string, password: string) => {
+// Função de Registro
+export const register = async (nome: string, email: string, password: string, data_nascimento: string) => {
     try {
-        const response = await axios.post(`${API_URL}/users`, { email, password });
+        const response = await axios.post(`${API_URL}/cadastro`, {
+            nome,
+            email,
+            password,
+            data_nascimento,
+        });
         return response.data;
-    } catch (error) {
-        throw new Error('Falha ao registrar.');
+    } catch (error: any) {
+        console.error("Erro ao registrar:", error.response || error.message);
+        throw new Error(error.response?.data?.detail || 'Falha ao registrar. Tente novamente.');
     }
 };

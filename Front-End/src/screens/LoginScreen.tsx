@@ -1,3 +1,4 @@
+import Button from 'components/Button';
 import React, { useState } from 'react';
 import {
   View,
@@ -20,17 +21,19 @@ const LoginScreen: React.FC = ({ navigation }: any) => {
       return;
     }
 
-    setLoading(true);
+
     try {
+   
+      setLoading(true);
+
       const data = await login(email, password);
 
-      if (data.length) {
+        // Login bem-sucedido, redireciona para a tela "Test"
         Alert.alert('Sucesso', 'Bem-vindo de volta!');
         navigation.navigate('Home');
-      } else {
-        Alert.alert('Erro', 'Credenciais inválidas.');
-      }
+      
     } catch (error: any) {
+      // Erro durante a tentativa de login
       Alert.alert('Erro', error.message);
     } finally {
       setLoading(false);
@@ -65,17 +68,16 @@ const LoginScreen: React.FC = ({ navigation }: any) => {
         />
       </View>
 
-      <TouchableOpacity
-        style={[styles.button, loading && styles.buttonDisabled]}
-        onPress={handleLogin}
-        disabled={loading}
-      >
-        <Text style={styles.buttonText}>Entrar</Text>
-      </TouchableOpacity>
+      <Button 
+        text="Entrar"
+        style={{ backgroundColor: "grey", marginTop: 15 }}
+        onPress={handleLogin} 
+        loading={loading} 
+      />
 
       <View style={styles.linkContainer}>
         <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-          <Text style={styles.linkText}>Não tem conta? Registre-se</Text>
+          <Text style={styles.linkText}>NÃ£o tem conta? Registre-se</Text>
         </TouchableOpacity>
       </View>
     </View>

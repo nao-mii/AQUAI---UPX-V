@@ -136,7 +136,7 @@ pip install -r requirements.txt
     <p>Se você tiver dúvidas ou sugestões, entre em contato:</p>
     <ul>
         <li><strong>Email:</strong> contato@aquai.com</li>
-        <li><strong>GitHub:</strong> <a href="#">https://github.com/nao-mii/ModeloAnimaisIA</a></li>
+        <li><strong>GitHub:</strong> <a href="#">https://github.com/nao-mii/AQUAI---UPX-V</a></li>
     </ul>
 </section>
 
